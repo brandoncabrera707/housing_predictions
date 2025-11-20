@@ -1,9 +1,17 @@
 import numpy as np
 import pandas as pd
+from sklearn.base import BaseEstimator, TransformerMixin
+
 def add_basement_features(df):
-  df = df.toCopy()
+  """Adds a boolean feature representing whether a house has a basement(1) or doesn't have a basement(0)
+
+  Args:
+      df (DataFrame): DataFrame in which we will add boolean column to
+
+  Returns:
+      _DataFrame_: Original DataFrame with a new feature 'has_basement'
+  """
   df['has_basement'] = (df['sqft_basement'] > 0).astype(int)
-  df['sqft_basement_nonzero'] = df['sqft_basement'].where(df['sqft_basement']> 0, np.nan)
   return df
 
 
@@ -38,3 +46,39 @@ def apply_standard_scaler(df, scaler):
   df_nparray = scaler.transform(df) # only transform data since scaler is already fitted
   df_scaled = pd.DataFrame(df_nparray, index = df.index, columns = df.columns)
   return df_scaled
+
+  
+  
+class logTransform(BaseEstimator, TransformerMixin):
+  """Takes the logarithm of arguement X and returns it as a DataFrame using X's orignal index and columns
+
+  Args:
+      BaseEstimator (_type_): _description_
+      TransformerMixin (_type_): _description_
+  """
+  def __init__(self):
+    pass
+  def fit(self, X, y = None):
+    return self
+  def transform(self, X):
+    return pd.DataFrame(np.log(X), index = X.index, columns = X.columns)
+
+class cbrtTransformer(BaseEstimator, TransformerMixin):
+  def __init(self):
+    """Empty constructor
+    """
+    pass
+  def fit(self, X, y = None): 
+    """Simply returns current object so that transform() can be used on it 
+    """
+    return self
+  def transform(self, X):
+    """Takes the cube root of argument X and returns it as a DataFrame using X's orignal index and columns
+
+    Args:
+        X (DataFrame): 
+
+    Returns:
+        DataFrame: returns the trans
+    """
+    return pd.DataFrame(np.cbrt(X), index = X.index, columns = X.columns)
