@@ -49,7 +49,7 @@ def apply_standard_scaler(df, scaler):
 
   
   
-class logTransform(BaseEstimator, TransformerMixin):
+class logTransformer(BaseEstimator, TransformerMixin):
   """Takes the logarithm of arguement X and returns it as a DataFrame using X's orignal index and columns
 
   Args:
