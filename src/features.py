@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.preprocessing import OneHotEncoder
 
 def add_basement_features(df):
   """Adds a boolean feature representing whether a house has a basement(1) or doesn't have a basement(0)
@@ -57,22 +58,27 @@ class logTransformer(BaseEstimator, TransformerMixin):
       TransformerMixin (_type_): _description_
   """
   def __init__(self):
-    pass
+    self.feature_names_ = None
   def fit(self, X, y = None):
+    self.feature_names_ = X.columns
     return self
   def transform(self, X):
     return pd.DataFrame(np.log(X), index = X.index, columns = X.columns)
+  def get_feature_names_out(self, input_features = None):
+    return self.feature_names_
 
 class cbrtTransformer(BaseEstimator, TransformerMixin):
-  def __init(self):
-    """Empty constructor
+  def __init__(self):
+    """Takes the cbrt of arguement X and returns it as a DataFrame using X's original index and columns
     """
+    self.feature_names_ = None
     pass
-  def fit(self, X, y = None): 
+  def fit(self, X:pd.DataFrame, y = None)-> pd.DataFrame: 
     """Simply returns current object so that transform() can be used on it 
     """
+    self.feature_names_ = X.columns
     return self
-  def transform(self, X):
+  def transform(self, X:pd.DataFrame) -> pd.DataFrame:
     """Takes the cube root of argument X and returns it as a DataFrame using X's orignal index and columns
 
     Args:
@@ -81,4 +87,6 @@ class cbrtTransformer(BaseEstimator, TransformerMixin):
     Returns:
         DataFrame: returns the trans
     """
-    return pd.DataFrame(np.cbrt(X), index = X.index, columns = X.columns)
+    return pd.DataFrame(np.cbrt(X), index = X.index, columns = self.feature_names_)
+  def get_feature_names_out(self, input_features = None ):
+    return self.feature_names_
