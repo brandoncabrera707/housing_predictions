@@ -1,7 +1,7 @@
 {
-  "svr_best_estimator": 0.30069471777947926,
+  "svr_best_score": 0.2982328119618905,
   "svr_best_params": {
     "svr__kernel": "linear",
-    "svr__C": 40
+    "svr__C": 60
   }
 }

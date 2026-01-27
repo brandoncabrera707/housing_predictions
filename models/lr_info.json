@@ -1,5 +1,5 @@
 {
-  "lr_best_estimator": 0.3018110804609648,
+  "lr_best_score": 0.30195774000920617,
   "lr_best_params": {
     "linearregression__positive": false,
     "linearregression__fit_intercept": true
