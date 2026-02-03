@@ -1,7 +1,0 @@
-{
-  "rfr_best_score": 0.32683377728104207,
-  "rfr_best_params": {
-    "randomforestregressor__criterion": "absolute_error",
-    "randomforestregressor__n_estimators": 183
-  }
-}
