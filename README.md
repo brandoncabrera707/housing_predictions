@@ -1,6 +1,6 @@
 # House Price Predictions
-An attempt at making an end-to-end machine learning project. A housing dataset containing information on house prices for houses in Washington State. 
-I do some exploratory data analysis and use a pipeline to prepare the dataset for various models. Implemented a randomized search on 
+An attempt at making an end-to-end machine learning project. Used a housing dataset containing information on house prices for houses in Washington State. 
+I performed some exploratory data analysis and used a pipeline to prepare the dataset for various models. Implemented a randomized search on 
 model hyperparameters to help get a sense of which ones were useful. Then, a grid search was implemented to further fine-tune the hyperparameters. 
 Finally, the models were evaluated using both RMSE and MAE to determine the final model.
 
